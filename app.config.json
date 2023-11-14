@@ -1,0 +1,4 @@
+{
+  "env": "prod",
+  "variables": ["BASE_URL"]
+}
