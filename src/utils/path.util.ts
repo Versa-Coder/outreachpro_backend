@@ -7,12 +7,6 @@ import {dirname} from 'path';
  * @param importMetaURL string: import.meta.url | path_url
  * @returns 
  */
-export const pathUtil= (importMetaURL:string)=>({
-    get __filename(){
-        return url.fileURLToPath(importMetaURL);
-    },
+export const pathUtil= (file:string= __filename)=>({
 
-    get __dirname(){
-        return dirname(this.__filename);
-    }
 });

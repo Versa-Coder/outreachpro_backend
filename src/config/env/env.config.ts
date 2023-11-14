@@ -10,7 +10,7 @@ import {ENV_ERR_KEY_NOT_FOUND, ENV_ERR_APP_CONFIG_NOT_FOUND} from '../../errors'
 
 export class EnvConfig {
   constructor(
-    private baseDir= join(pathUtil(import.meta.url).__dirname, '../../../'),
+    private baseDir= join(__dirname, '../../../'),
     private appConfigFile= join(baseDir, 'app.config.json')
   ){}
 
@@ -23,11 +23,18 @@ export class EnvConfig {
         }
 
         let config= JSON.parse(data) as {env: string, variables: string[]};
+        console.log(config);
+
+        
         if(config.env as string && config.variables as string []){
-          configENV({path: join(this.baseDir, `${this.baseDir}/.${config.env}.env`)});
+          let fileName= `.${config.env}.env`;
+          let envFile= `${this.baseDir}/${fileName}`;
+          configENV({path: join(this.baseDir, envFile)});
           config.variables.forEach((key)=>{
-            if(typeof(process.env[key])===undefined){
-              throw ENV_ERR_KEY_NOT_FOUND(key);
+            console.log(key, typeof(process.env[key]));
+            if(typeof(process.env[key])==='undefined'){
+              console.log("Err....");
+              throw ENV_ERR_KEY_NOT_FOUND(key, fileName, envFile);
             }
           })
         }
