@@ -1,8 +1,25 @@
-import { EnvConfig } from "./config";
+import { EnvConfig } from './config';
+import { db } from './config';
 
-(new EnvConfig()).init().then(data=>{
-    console.log(data);
-}).catch(err=>{
-    console.log("err");
-});
+(async function () {
+  try {
+    let data = await new EnvConfig().init();
+    await db.init();
+  } catch (err) {
+    console.log(err);
+  }
+})();
 
+//     // dbConfig()
+//     //   .then((data) => {
+//     //     console.log({ data });
+//     //   })
+//     //   .catch((err) => {
+//     //     console.log(err);
+//     //   });
+//   })
+//   .catch((err) => {
+//     console.log('err>>', err);
+//   });
+
+// //import { dbConfig } from './config';

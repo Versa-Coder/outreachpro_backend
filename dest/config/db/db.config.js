@@ -9,28 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = require("./config");
-const config_2 = require("./config");
-(function () {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            let data = yield new config_1.EnvConfig().init();
-            yield config_2.db.init();
-        }
-        catch (err) {
-            console.log(err);
-        }
-    });
-})();
-//     // dbConfig()
-//     //   .then((data) => {
-//     //     console.log({ data });
-//     //   })
-//     //   .catch((err) => {
-//     //     console.log(err);
-//     //   });
-//   })
-//   .catch((err) => {
-//     console.log('err>>', err);
-//   });
-// //import { dbConfig } from './config';
+exports.sequelize = exports.db = void 0;
+const sequelize_1 = require("sequelize");
+exports.db = {
+    connection: null,
+    init() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.connection = new sequelize_1.Sequelize(process.env.DB_CONNECTION, {
+                dialect: 'postgres',
+            });
+            yield this.connection.authenticate();
+            return this.connection;
+        });
+    },
+};
+exports.sequelize = exports.db.connection;

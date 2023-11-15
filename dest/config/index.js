@@ -15,3 +15,4 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./env/env.config"), exports);
+__exportStar(require("./db/db.config"), exports);
