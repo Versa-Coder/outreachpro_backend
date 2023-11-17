@@ -9,30 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = require("./config");
-const config_2 = require("./config");
-const logger_util_1 = require("./utils/logger.util");
-(function () {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield new config_1.EnvConfig().init();
-            yield config_2.db.init();
-            yield config_1.expressConfig.init();
-        }
-        catch (err) {
-            logger_util_1.loggerUtil.error(err);
-        }
-    });
-})();
-//     // dbConfig()
-//     //   .then((data) => {
-//     //     console.log({ data });
-//     //   })
-//     //   .catch((err) => {
-//     //     console.log(err);
-//     //   });
-//   })
-//   .catch((err) => {
-//     console.log('err>>', err);
-//   });
-// //import { dbConfig } from './config';
+exports.graphqlConfig = void 0;
+const server_1 = require("@apollo/server");
+const graphql_1 = require("../../graphql");
+const express4_1 = require("@apollo/server/express4");
+exports.graphqlConfig = {
+    server: new server_1.ApolloServer({
+        schema: graphql_1.graphQLSchema,
+    }),
+    init() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.start();
+            return this.getExpressMiddleware();
+        });
+    },
+    start() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.server.start();
+        });
+    },
+    getExpressMiddleware() {
+        return (0, express4_1.expressMiddleware)(this.server);
+    },
+};

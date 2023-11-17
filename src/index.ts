@@ -1,12 +1,15 @@
-import { EnvConfig } from './config';
+import { EnvConfig, expressConfig } from './config';
 import { db } from './config';
+import { loggerUtil } from './utils/logger.util';
 
 (async function () {
   try {
-    let data = await new EnvConfig().init();
+    await new EnvConfig().init();
     await db.init();
+
+    await expressConfig.init();
   } catch (err) {
-    console.log(err);
+    loggerUtil.error(err);
   }
 })();
 

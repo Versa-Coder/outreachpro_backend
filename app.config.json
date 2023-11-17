@@ -1,4 +1,4 @@
 {
   "env": "dev",
-  "variables": ["BASE_URL", "DB_CONNECTION"]
+  "variables": ["BASE_URL", "SERVER_HOST", "SERVER_PORT", "DB_CONNECTION", "MAX_RECORDS_PER_PAGE"]
 }
