@@ -9,7 +9,10 @@ const rootQuery = new graphql_1.GraphQLObjectType({
     description: 'Explore all the queries for the app',
     fields: {
         ListQuery: {
-            type: list_graphql_query_1.ListGraphQLQueryType,
+            type: list_graphql_query_1.ListGraphQLQueries,
+            resolve: (root, args) => {
+                return 'GetListsQuery';
+            },
         },
     },
 });
@@ -18,7 +21,7 @@ const rootMutations = new graphql_1.GraphQLObjectType({
     description: 'List of all the mutations',
     fields: {
         ListMutation: {
-            type: list_graphql_mutation_1.ListGraphQLMutationTypes,
+            type: list_graphql_mutation_1.ListGraphQLMutations,
             resolve(a, b) {
                 return 'ok';
             },

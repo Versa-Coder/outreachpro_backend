@@ -24,6 +24,9 @@ exports.expressConfig = {
             yield this.listen();
         });
     },
+    getWildCardRoutes() {
+        return ['login'];
+    },
     setupGraphQL() {
         return __awaiter(this, void 0, void 0, function* () {
             this.app.all('/graphql', express_1.default.json(), yield graphql_config_1.graphqlConfig.init());

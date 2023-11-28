@@ -3,7 +3,7 @@ import { GQL_LIST_INFO_TYPE } from './list.graphql.type';
 import { ListController } from '../../controllers';
 import { LIST_INFO_MODEL_OPTIONAL_ID_TYPE } from '../../models';
 
-export const ListGraphQLMutationTypes = new GraphQLObjectType({
+export const ListGraphQLMutations = new GraphQLObjectType({
   name: 'ListMutations',
   description: "List of all 'List' related mutations",
 

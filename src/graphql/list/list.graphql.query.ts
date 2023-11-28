@@ -3,7 +3,7 @@ import { GQL_LIST_INFO_TYPE } from './list.graphql.type';
 import { ListController } from '../../controllers';
 import { loggerUtil } from '../../utils/logger.util';
 
-export const ListGraphQLQueryType = new GraphQLObjectType({
+export const ListGraphQLQueries = new GraphQLObjectType({
   name: 'List_Queries',
   description: 'Get lists for an user',
 
@@ -14,7 +14,6 @@ export const ListGraphQLQueryType = new GraphQLObjectType({
         userId: { type: GraphQLString },
       },
       resolve(root, args) {
-        loggerUtil.log({ args });
         return new ListController().getListsForUser(args.userId);
       },
     },
@@ -25,7 +24,6 @@ export const ListGraphQLQueryType = new GraphQLObjectType({
         userId: { type: GraphQLString },
       },
       resolve(root, args) {
-        loggerUtil.log({ args });
         return new ListController().getListsForUser(args.userId);
       },
     },

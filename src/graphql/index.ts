@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
-import { ListGraphQLQueryType } from './list/list.graphql.query';
-import { ListGraphQLMutationTypes } from './list/list.graphql.mutation';
+import { ListGraphQLQueries } from './list/list.graphql.query';
+import { ListGraphQLMutations } from './list/list.graphql.mutation';
 
 const rootQuery = new GraphQLObjectType({
   name: 'AppQueryType',
@@ -8,7 +8,10 @@ const rootQuery = new GraphQLObjectType({
 
   fields: {
     ListQuery: {
-      type: ListGraphQLQueryType,
+      type: ListGraphQLQueries,
+      resolve: (root, args) => {
+        return 'GetListsQuery';
+      },
     },
   },
 });
@@ -18,7 +21,7 @@ const rootMutations = new GraphQLObjectType({
   description: 'List of all the mutations',
   fields: {
     ListMutation: {
-      type: ListGraphQLMutationTypes,
+      type: ListGraphQLMutations,
       resolve(a, b) {
         return 'ok';
       },

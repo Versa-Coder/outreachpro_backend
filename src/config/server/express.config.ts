@@ -10,6 +10,10 @@ export const expressConfig = {
     await this.listen();
   },
 
+  getWildCardRoutes() {
+    return ['login'];
+  },
+
   async setupGraphQL() {
     this.app.all('/graphql', express.json(), await graphqlConfig.init());
   },

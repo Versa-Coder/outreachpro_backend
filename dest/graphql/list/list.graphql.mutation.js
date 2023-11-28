@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListGraphQLMutationTypes = void 0;
+exports.ListGraphQLMutations = void 0;
 const graphql_1 = require("graphql");
 const list_graphql_type_1 = require("./list.graphql.type");
 const controllers_1 = require("../../controllers");
-exports.ListGraphQLMutationTypes = new graphql_1.GraphQLObjectType({
+exports.ListGraphQLMutations = new graphql_1.GraphQLObjectType({
     name: 'ListMutations',
     description: "List of all 'List' related mutations",
     fields: () => ({

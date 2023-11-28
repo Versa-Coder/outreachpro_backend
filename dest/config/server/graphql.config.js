@@ -16,6 +16,7 @@ const express4_1 = require("@apollo/server/express4");
 exports.graphqlConfig = {
     server: new server_1.ApolloServer({
         schema: graphql_1.graphQLSchema,
+        formatError: handleGQLError,
     }),
     init() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -32,3 +33,10 @@ exports.graphqlConfig = {
         return (0, express4_1.expressMiddleware)(this.server);
     },
 };
+function handleGQLError(formattedError, error) {
+    console.log({
+        formattedError,
+        error,
+    });
+    return formattedError;
+}
