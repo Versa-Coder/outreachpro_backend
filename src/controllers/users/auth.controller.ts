@@ -1,7 +1,7 @@
 export class AuthController {
   constructor() {}
 
-  doLogin(authData: string) {
+  doLogin(authData: { userName: string; password: string }) {
     return {
       id: 1,
     };

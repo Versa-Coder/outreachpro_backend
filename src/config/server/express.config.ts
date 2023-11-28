@@ -20,6 +20,7 @@ export const expressConfig = {
 
   listen() {
     let port = parseInt(process.env.SERVER_PORT?.trim() as string);
+
     this.app.listen(port, () => {
       loggerUtil.success(`✅ Server started: http://${process.env.SERVER_HOST?.trim()}:${port}`);
     });
