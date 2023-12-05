@@ -1,6 +1,6 @@
 import { GraphQLBoolean, GraphQLObjectType, GraphQLString } from 'graphql';
 
-export const GQL_LIST_INFO_TYPE = new GraphQLObjectType({
+export const GraphQLListInfoType = new GraphQLObjectType({
   name: 'ListInfo',
   description: 'Individual list basic info and settings',
   fields: () => ({

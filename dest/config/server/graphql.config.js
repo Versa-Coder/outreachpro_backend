@@ -13,6 +13,8 @@ exports.graphqlConfig = void 0;
 const server_1 = require("@apollo/server");
 const graphql_1 = require("../../graphql");
 const express4_1 = require("@apollo/server/express4");
+const graphql_error_1 = require("../../errors/config/graphql.error");
+const logger_util_1 = require("../../utils/logger.util");
 exports.graphqlConfig = {
     server: new server_1.ApolloServer({
         schema: graphql_1.graphQLSchema,
@@ -34,9 +36,9 @@ exports.graphqlConfig = {
     },
 };
 function handleGQLError(formattedError, error) {
-    console.log({
-        formattedError,
-        error,
-    });
-    return formattedError;
+    if (!(typeof error === 'object' && error.code)) {
+        logger_util_1.loggerUtil.error(error).notify();
+        return graphql_error_1.GRAPHQL_ERR_UNKNOWN;
+    }
+    return error;
 }

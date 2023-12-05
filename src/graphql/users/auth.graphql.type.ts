@@ -1,7 +1,7 @@
 import { GraphQLBoolean, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 
-export const GQL_AUTH_LOGIN_HEADER = new GraphQLObjectType({
-  name: 'GQL_AUTHED_LOGIN_HEADER',
+export const GraphQLAuthLoginHeaderType = new GraphQLObjectType({
+  name: 'AuthLoginHeader',
   description: 'Authed login',
   fields: {
     Authorization: {
@@ -10,8 +10,8 @@ export const GQL_AUTH_LOGIN_HEADER = new GraphQLObjectType({
   },
 });
 
-export const GQL_AUTH_LOGIN_DETAIL = new GraphQLObjectType({
-  name: 'GQL_AUTH_LOGIN_DETAIL',
+export const GraphQLAuthLoginDetailType = new GraphQLObjectType({
+  name: 'AuthLoginDetail',
   description: 'Login informations',
 
   fields: {
@@ -20,8 +20,8 @@ export const GQL_AUTH_LOGIN_DETAIL = new GraphQLObjectType({
   },
 });
 
-export const GQL_AUTH_LOGIN_SUCEESS = new GraphQLObjectType({
-  name: 'GQL_AUTH_LOGIN_DETAIL',
+export const GraphQLAuthLoginSuccessType = new GraphQLObjectType({
+  name: 'AuthLoginSuccess',
   description: 'Login informations',
 
   fields: {

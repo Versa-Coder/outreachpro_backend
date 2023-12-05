@@ -3,7 +3,7 @@ import { ListGraphQLQueries } from './list/list.graphql.query';
 import { ListGraphQLMutations } from './list/list.graphql.mutation';
 
 const rootQuery = new GraphQLObjectType({
-  name: 'AppQueryType',
+  name: 'AppQuery',
   description: 'Explore all the queries for the app',
 
   fields: {
@@ -17,7 +17,7 @@ const rootQuery = new GraphQLObjectType({
 });
 
 const rootMutations = new GraphQLObjectType({
-  name: 'AppMutationType',
+  name: 'AppMutation',
   description: 'List of all the mutations',
   fields: {
     ListMutation: {

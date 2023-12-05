@@ -8,8 +8,8 @@ exports.AuthGraphQLMutations = new graphql_1.GraphQLObjectType({
     name: 'AuthMutations',
     description: 'List of mutations to authenticate',
     fields: {
-        signup: {
-            type: auth_graphql_type_1.GQL_AUTH_LOGIN_DETAIL,
+        signin: {
+            type: auth_graphql_type_1.GraphQLAuthLoginSuccessType,
             args: {
                 userName: { type: graphql_1.GraphQLString },
                 password: { type: graphql_1.GraphQLString },

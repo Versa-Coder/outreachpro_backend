@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GQL_LIST_INFO_TYPE = void 0;
+exports.GraphQLListInfoType = void 0;
 const graphql_1 = require("graphql");
-exports.GQL_LIST_INFO_TYPE = new graphql_1.GraphQLObjectType({
+exports.GraphQLListInfoType = new graphql_1.GraphQLObjectType({
     name: 'ListInfo',
     description: 'Individual list basic info and settings',
     fields: () => ({

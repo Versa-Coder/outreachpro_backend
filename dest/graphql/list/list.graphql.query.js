@@ -9,7 +9,7 @@ exports.ListGraphQLQueries = new graphql_1.GraphQLObjectType({
     description: 'Get lists for an user',
     fields: () => ({
         getLists: {
-            type: new graphql_1.GraphQLList(list_graphql_type_1.GQL_LIST_INFO_TYPE),
+            type: new graphql_1.GraphQLList(list_graphql_type_1.GraphQLListInfoType),
             args: {
                 userId: { type: graphql_1.GraphQLString },
             },
@@ -18,7 +18,7 @@ exports.ListGraphQLQueries = new graphql_1.GraphQLObjectType({
             },
         },
         getLists2: {
-            type: new graphql_1.GraphQLList(list_graphql_type_1.GQL_LIST_INFO_TYPE),
+            type: new graphql_1.GraphQLList(list_graphql_type_1.GraphQLListInfoType),
             args: {
                 userId: { type: graphql_1.GraphQLString },
             },

@@ -22,7 +22,7 @@ export const db = {
 
     //If no error clear console
     //console.clear();
-    loggerUtil.success('✅ DB & Models configures successfully');
+    loggerUtil.success('✅ DB & Models configured successfully');
     return this.connection;
   },
 

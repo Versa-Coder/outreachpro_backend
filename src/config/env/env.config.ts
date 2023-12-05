@@ -23,7 +23,6 @@ export class EnvConfig {
           }
 
           let config = JSON.parse(data) as { env: string; variables: string[] };
-          console.log(config);
 
           if ((config.env as string) && (config.variables as string[])) {
             let fileName = `.${config.env}.env`;
@@ -32,7 +31,6 @@ export class EnvConfig {
             configENV({ path: envFile });
 
             config.variables.forEach((key) => {
-              console.log(key, typeof process.env[key]);
               if (typeof process.env[key] === 'undefined') {
                 throw ENV_ERR_KEY_NOT_FOUND(key, fileName, envFile);
               }

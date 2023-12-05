@@ -29,7 +29,7 @@ exports.db = {
             yield this.sync();
             //If no error clear console
             //console.clear();
-            logger_util_1.loggerUtil.success('✅ DB & Models configures successfully');
+            logger_util_1.loggerUtil.success('✅ DB & Models configured successfully');
             return this.connection;
         });
     },

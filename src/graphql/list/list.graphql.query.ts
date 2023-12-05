@@ -1,5 +1,5 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
-import { GQL_LIST_INFO_TYPE } from './list.graphql.type';
+import { GraphQLListInfoType } from './list.graphql.type';
 import { ListController } from '../../controllers';
 import { loggerUtil } from '../../utils/logger.util';
 
@@ -9,7 +9,7 @@ export const ListGraphQLQueries = new GraphQLObjectType({
 
   fields: () => ({
     getLists: {
-      type: new GraphQLList(GQL_LIST_INFO_TYPE),
+      type: new GraphQLList(GraphQLListInfoType),
       args: {
         userId: { type: GraphQLString },
       },
@@ -19,7 +19,7 @@ export const ListGraphQLQueries = new GraphQLObjectType({
     },
 
     getLists2: {
-      type: new GraphQLList(GQL_LIST_INFO_TYPE),
+      type: new GraphQLList(GraphQLListInfoType),
       args: {
         userId: { type: GraphQLString },
       },

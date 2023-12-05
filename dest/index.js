@@ -24,15 +24,3 @@ const logger_util_1 = require("./utils/logger.util");
         }
     });
 })();
-//     // dbConfig()
-//     //   .then((data) => {
-//     //     console.log({ data });
-//     //   })
-//     //   .catch((err) => {
-//     //     console.log(err);
-//     //   });
-//   })
-//   .catch((err) => {
-//     console.log('err>>', err);
-//   });
-// //import { dbConfig } from './config';

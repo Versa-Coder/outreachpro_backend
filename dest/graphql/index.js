@@ -5,7 +5,7 @@ const graphql_1 = require("graphql");
 const list_graphql_query_1 = require("./list/list.graphql.query");
 const list_graphql_mutation_1 = require("./list/list.graphql.mutation");
 const rootQuery = new graphql_1.GraphQLObjectType({
-    name: 'AppQueryType',
+    name: 'AppQuery',
     description: 'Explore all the queries for the app',
     fields: {
         ListQuery: {
@@ -17,7 +17,7 @@ const rootQuery = new graphql_1.GraphQLObjectType({
     },
 });
 const rootMutations = new graphql_1.GraphQLObjectType({
-    name: 'AppMutationType',
+    name: 'AppMutation',
     description: 'List of all the mutations',
     fields: {
         ListMutation: {

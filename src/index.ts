@@ -12,17 +12,3 @@ import { loggerUtil } from './utils/logger.util';
     loggerUtil.error(err);
   }
 })();
-
-//     // dbConfig()
-//     //   .then((data) => {
-//     //     console.log({ data });
-//     //   })
-//     //   .catch((err) => {
-//     //     console.log(err);
-//     //   });
-//   })
-//   .catch((err) => {
-//     console.log('err>>', err);
-//   });
-
-// //import { dbConfig } from './config';
