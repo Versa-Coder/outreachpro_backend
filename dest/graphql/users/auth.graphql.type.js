@@ -24,7 +24,8 @@ exports.GraphQLAuthLoginSuccessType = new graphql_1.GraphQLObjectType({
     description: 'Login informations',
     fields: {
         loggedIn: { type: graphql_1.GraphQLBoolean },
-        token: { type: graphql_1.GraphQLString },
+        accessToken: { type: graphql_1.GraphQLString },
+        refreshToken: { type: graphql_1.GraphQLString },
         time: { type: graphql_1.GraphQLString },
     },
 });

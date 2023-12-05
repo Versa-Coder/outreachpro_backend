@@ -26,7 +26,8 @@ export const GraphQLAuthLoginSuccessType = new GraphQLObjectType({
 
   fields: {
     loggedIn: { type: GraphQLBoolean },
-    token: { type: GraphQLString },
+    accessToken: { type: GraphQLString },
+    refreshToken: { type: GraphQLString },
     time: { type: GraphQLString },
   },
 });

@@ -16,6 +16,7 @@ exports.expressConfig = void 0;
 const express_1 = __importDefault(require("express"));
 const logger_util_1 = require("../../utils/logger.util");
 const graphql_config_1 = require("./graphql.config");
+const auth_controller_1 = require("../../controllers/users/auth.controller");
 exports.expressConfig = {
     app: (0, express_1.default)(),
     init() {
@@ -29,7 +30,13 @@ exports.expressConfig = {
     },
     setupGraphQL() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.app.all('/graphql', express_1.default.json(), yield graphql_config_1.graphqlConfig.init());
+            let authed = yield graphql_config_1.graphqlConfig.init(true);
+            let noneAuthed = yield graphql_config_1.graphqlConfig.init(false);
+            let authController = new auth_controller_1.AuthController();
+            this.app.all('/graphql', express_1.default.json(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+                let stat = yield authController.isLoggedInForGraphQL(req);
+                stat ? authed(req, res, next) : noneAuthed(req, res, next);
+            }));
         });
     },
     listen() {

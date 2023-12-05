@@ -16,23 +16,18 @@ const express4_1 = require("@apollo/server/express4");
 const graphql_error_1 = require("../../errors/config/graphql.error");
 const logger_util_1 = require("../../utils/logger.util");
 exports.graphqlConfig = {
-    server: new server_1.ApolloServer({
-        schema: graphql_1.graphQLSchema,
-        formatError: handleGQLError,
-    }),
-    init() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.start();
-            return this.getExpressMiddleware();
+    createServer(authed) {
+        return new server_1.ApolloServer({
+            schema: (0, graphql_1.getGraphQLSchema)(authed),
+            formatError: handleGQLError,
         });
     },
-    start() {
+    init(authed = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.server.start();
+            const server = this.createServer(authed);
+            yield server.start();
+            return (0, express4_1.expressMiddleware)(server);
         });
-    },
-    getExpressMiddleware() {
-        return (0, express4_1.expressMiddleware)(this.server);
     },
 };
 function handleGQLError(formattedError, error) {

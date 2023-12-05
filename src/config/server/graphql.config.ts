@@ -1,28 +1,23 @@
 import { GraphQLFormattedError } from 'graphql';
 import { ApolloServer } from '@apollo/server';
-import { graphQLSchema } from '../../graphql';
+import { getGraphQLSchema } from '../../graphql';
 import { expressMiddleware } from '@apollo/server/express4';
 import { COMMON_ERROR_TYPE } from '../../types';
 import { GRAPHQL_ERR_UNKNOWN } from '../../errors/config/graphql.error';
 import { loggerUtil } from '../../utils/logger.util';
 
 export const graphqlConfig = {
-  server: new ApolloServer({
-    schema: graphQLSchema,
-    formatError: handleGQLError,
-  }),
-
-  async init() {
-    await this.start();
-    return this.getExpressMiddleware();
+  createServer(authed: boolean) {
+    return new ApolloServer({
+      schema: getGraphQLSchema(authed),
+      formatError: handleGQLError,
+    });
   },
 
-  async start() {
-    await this.server.start();
-  },
-
-  getExpressMiddleware() {
-    return expressMiddleware(this.server);
+  async init(authed: boolean = false) {
+    const server = this.createServer(authed);
+    await server.start();
+    return expressMiddleware(server);
   },
 };
 
