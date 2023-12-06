@@ -16,9 +16,17 @@ class UserModel extends sequelize_1.Model {
                 allowNull: false,
                 unique: true,
             },
-            token: {
+            sessionToken: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: true,
+                unique: true,
+                defaultValue: sequelize_1.UUIDV4,
+            },
+            authToken: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true,
+                unique: true,
+                defaultValue: sequelize_1.UUIDV4,
             },
         }, {
             sequelize,

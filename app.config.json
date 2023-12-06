@@ -1,4 +1,13 @@
 {
   "env": "dev",
-  "variables": ["BASE_URL", "SERVER_HOST", "SERVER_PORT", "DB_CONNECTION", "MAX_RECORDS_PER_PAGE"]
+  "variables": [
+    "BASE_URL",
+    "SERVER_HOST",
+    "SERVER_PORT",
+    "DB_CONNECTION",
+    "MAX_RECORDS_PER_PAGE",
+    "APP_SECRET",
+    "USER_AUTH_SECRET",
+    "ADMIN_AUTH_SECRET"
+  ]
 }

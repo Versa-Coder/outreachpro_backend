@@ -1,9 +1,10 @@
-import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
+import { DataTypes, Model, Optional, Sequelize, UUIDV4 } from 'sequelize';
 
 type UserModelAttributeType = {
   id: Number;
   uid: String;
-  token: String;
+  sessionToken: String;
+  authToken: String;
 };
 
 type UserModelAttributeTypeIdOptional = Optional<UserModelAttributeType, 'id'>;
@@ -11,7 +12,8 @@ type UserModelAttributeTypeIdOptional = Optional<UserModelAttributeType, 'id'>;
 export class UserModel extends Model<UserModelAttributeType, UserModelAttributeTypeIdOptional> {
   declare id: string;
   declare uid: string;
-  declare token: string;
+  declare sessionToken: string;
+  declare authToken: string;
 
   static ready(sequelize: Sequelize) {
     UserModel.init(
@@ -29,9 +31,18 @@ export class UserModel extends Model<UserModelAttributeType, UserModelAttributeT
           unique: true,
         },
 
-        token: {
+        sessionToken: {
           type: DataTypes.STRING,
           allowNull: true,
+          unique: true,
+          defaultValue: UUIDV4,
+        },
+
+        authToken: {
+          type: DataTypes.STRING,
+          allowNull: true,
+          unique: true,
+          defaultValue: UUIDV4,
         },
       },
       {
