@@ -1,9 +1,20 @@
 import type { Request } from 'express';
+import { UserModel } from '../../models';
+import { UUIDV4 } from 'sequelize';
 
 export class AuthController {
   constructor() {}
 
+  doRegister(uid: string) {
+    UserModel.create({
+      uid: uid,
+    });
+  }
+
   doLogin(authData: { userName: string; password: string }) {
+    UserModel.findOne({
+      attributes: ['sessionToken'],
+    });
     const stat = {
       loggedIn: true,
       accessToken: 'hello',

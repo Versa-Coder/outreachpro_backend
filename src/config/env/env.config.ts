@@ -30,11 +30,17 @@ export class EnvConfig {
 
             configENV({ path: envFile });
 
+            const missingKeyArr = [] as string[];
+
             config.variables.forEach((key) => {
               if (typeof process.env[key] === 'undefined') {
-                throw ENV_ERR_KEY_NOT_FOUND(key, fileName, envFile);
+                missingKeyArr.push(key);
               }
             });
+
+            if (missingKeyArr.length > 0) {
+              throw ENV_ERR_KEY_NOT_FOUND(missingKeyArr, { envFile: fileName, envPath: envFile });
+            }
 
             resolve(true);
           } else {

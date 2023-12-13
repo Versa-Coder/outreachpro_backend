@@ -25,11 +25,15 @@ class EnvConfig {
                         let fileName = `.${config.env}.env`;
                         let envFile = (0, path_1.join)(this.baseDir, fileName);
                         (0, dotenv_1.config)({ path: envFile });
+                        const missingKeyArr = [];
                         config.variables.forEach((key) => {
                             if (typeof process.env[key] === 'undefined') {
-                                throw (0, errors_1.ENV_ERR_KEY_NOT_FOUND)(key, fileName, envFile);
+                                missingKeyArr.push(key);
                             }
                         });
+                        if (missingKeyArr.length > 0) {
+                            throw (0, errors_1.ENV_ERR_KEY_NOT_FOUND)(missingKeyArr, { envFile: fileName, envPath: envFile });
+                        }
                         resolve(true);
                     }
                     else {

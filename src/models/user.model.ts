@@ -7,7 +7,7 @@ type UserModelAttributeType = {
   authToken: String;
 };
 
-type UserModelAttributeTypeIdOptional = Optional<UserModelAttributeType, 'id'>;
+type UserModelAttributeTypeIdOptional = Optional<UserModelAttributeType, 'id' | 'authToken' | 'sessionToken'>;
 
 export class UserModel extends Model<UserModelAttributeType, UserModelAttributeTypeIdOptional> {
   declare id: string;
@@ -35,14 +35,12 @@ export class UserModel extends Model<UserModelAttributeType, UserModelAttributeT
           type: DataTypes.STRING,
           allowNull: true,
           unique: true,
-          defaultValue: UUIDV4,
         },
 
         authToken: {
           type: DataTypes.STRING,
           allowNull: true,
           unique: true,
-          defaultValue: UUIDV4,
         },
       },
       {
