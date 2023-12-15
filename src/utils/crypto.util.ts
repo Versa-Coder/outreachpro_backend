@@ -2,6 +2,8 @@ import { Worker } from 'node:worker_threads';
 import { join as pathJoin } from 'node:path';
 import { GENERATE_RANDOM_STRING_METHOD_TYPE } from '../types';
 import { randomNumber } from './math.util';
+import { COMMON_CALLBACK_TYPE } from '../types/common.type';
+import { doCallBack } from './callback.util';
 
 export const generateRandomString: GENERATE_RANDOM_STRING_METHOD_TYPE = function (
   length: number,
@@ -9,9 +11,19 @@ export const generateRandomString: GENERATE_RANDOM_STRING_METHOD_TYPE = function
     specialChar: false,
     secured: false,
   },
+  callback: COMMON_CALLBACK_TYPE | undefined,
 ) {
   if (length < 1) {
     throw new Error('Length should be greater than one');
+  }
+
+  let cb = callback;
+  if (typeof options === 'function') {
+    cb = options as COMMON_CALLBACK_TYPE;
+    options = {
+      specialChar: false,
+      secured: false,
+    };
   }
 
   return new Promise((resolve, reject) => {
@@ -24,11 +36,13 @@ export const generateRandomString: GENERATE_RANDOM_STRING_METHOD_TYPE = function
     });
 
     worker.on('message', (data: string) => {
+      doCallBack(cb, null, data);
       resolve(data);
       worker.terminate();
     });
 
     worker.on('error', (err) => {
+      doCallBack(cb, err, undefined);
       reject(err);
       worker.terminate();
     });

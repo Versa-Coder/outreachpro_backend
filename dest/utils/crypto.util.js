@@ -4,12 +4,21 @@ exports.generateERandomStringSync = exports.strShuffleSync = exports.generateRan
 const node_worker_threads_1 = require("node:worker_threads");
 const node_path_1 = require("node:path");
 const math_util_1 = require("./math.util");
+const callback_util_1 = require("./callback.util");
 const generateRandomString = function (length, options = {
     specialChar: false,
     secured: false,
-}) {
+}, callback) {
     if (length < 1) {
         throw new Error('Length should be greater than one');
+    }
+    let cb = callback;
+    if (typeof options === 'function') {
+        cb = options;
+        options = {
+            specialChar: false,
+            secured: false,
+        };
     }
     return new Promise((resolve, reject) => {
         let worker = new node_worker_threads_1.Worker((0, node_path_1.join)(__dirname, './workers/crypto.worker.js'));
@@ -19,10 +28,12 @@ const generateRandomString = function (length, options = {
             options,
         });
         worker.on('message', (data) => {
+            (0, callback_util_1.doCallBack)(cb, null, data);
             resolve(data);
             worker.terminate();
         });
         worker.on('error', (err) => {
+            (0, callback_util_1.doCallBack)(cb, err, undefined);
             reject(err);
             worker.terminate();
         });
